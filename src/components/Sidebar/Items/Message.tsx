@@ -1,6 +1,7 @@
 import { DragEvent } from "react";
+import MessageIcon from "../../../assets/MessageIcon";
 
-function MessageNode() {
+function Message() {
   const onDragStart = (event: DragEvent<HTMLDivElement>, nodeType: string) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
@@ -8,13 +9,14 @@ function MessageNode() {
 
   return (
     <div
-      className="messageNode"
+      className="createNode message"
       onDragStart={(event) => onDragStart(event, "input")}
       draggable
     >
-      icon Message Node
+      <MessageIcon />
+      Message
     </div>
   );
 }
 
-export default MessageNode;
+export default Message;

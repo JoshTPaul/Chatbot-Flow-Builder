@@ -5,9 +5,9 @@
 body {
   --primary: #5f6880;
   --neutral0: #000;
-  --neutral400: #fff;
-  --neutral500: #f3f3f3;
-  --neutral600: #dcdcdc;
+  --neutral700: #dcdcdc;
+  --neutral800: #f3f3f3;
+  --neutral900: #fff;
 
   margin: 0;
   color: var(--neutral0);
@@ -28,13 +28,13 @@ header {
   display: grid;
   grid-template-columns: auto 400px;
   place-items: center;
-  background-color: var(--neutral500);
+  background-color: var(--neutral800);
 }
 
 button {
   appearance: none;
   color: var(--primary);
-  background-color: var(--neutral400);
+  background-color: var(--neutral900);
   border: 2px solid currentColor;
   padding: 0.75rem;
   width: 150px;
@@ -51,7 +51,7 @@ main {
 }
 
 aside {
-  border: 1px solid var(--neutral600);
+  border: 1px solid var(--neutral700);
   padding: 0.75rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -59,10 +59,15 @@ aside {
   gap: 0.5rem;
 }
 
-.messageNode {
+.createNode {
   padding: 0.75rem;
   color: var(--primary);
   border: 2px solid;
   border-radius: 0.25rem;
   cursor: grab;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: var(--neutral900);
 }

@@ -1,11 +1,11 @@
-import MessageNode from "./Items/MessageNode";
+import Message from "./Items/Message";
 
 function Sidebar() {
   return (
     <aside>
-      <MessageNode />
-      <MessageNode />
-      <MessageNode />
+      <Message />
+      <Message />
+      <Message />
     </aside>
   );
 }
