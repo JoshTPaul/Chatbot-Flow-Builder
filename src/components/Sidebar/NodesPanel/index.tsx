@@ -6,12 +6,12 @@ const PANEL_ITEMS = [
   {
     img: <MessageIcon />,
     label: "Message",
-    nodeType: "input",
+    nodeType: "message",
   },
   {
     img: <MessageIcon />,
     label: "Message",
-    nodeType: "input",
+    nodeType: "message",
   },
 ];
 

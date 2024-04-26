@@ -1,38 +1,44 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import ReactFlow, {
   Connection,
   Controls,
   Edge,
+  MarkerType,
   ReactFlowInstance,
   ReactFlowProvider,
   addEdge,
   useEdgesState,
   useNodesState,
 } from "reactflow";
-
-const initialNodes = [
-  {
-    id: "1",
-    type: "input",
-    data: { label: "input node" },
-    position: { x: 250, y: 5 },
-  },
-];
+import MessageNode from "../Nodes/Message";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 function Canvas() {
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any
   > | null>(null);
 
+  const nodeTypes = useMemo(() => ({ message: MessageNode }), []);
+
   const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Edge | Connection) =>
+      setEdges((eds) =>
+        addEdge(
+          {
+            ...params,
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+            },
+          },
+          eds
+        )
+      ),
     []
   );
 
@@ -83,11 +89,7 @@ function Canvas() {
   return (
     <>
       <ReactFlowProvider>
-        <div
-          className="reactflow-wrapper"
-          ref={reactFlowWrapper}
-          style={{ width: "100%", height: "100%" }}
-        >
+        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -99,6 +101,7 @@ function Canvas() {
             onDragOver={onDragOver}
             fitView
             onNodeClick={(event) => console.log("click", event)}
+            nodeTypes={nodeTypes}
           >
             <Controls />
           </ReactFlow>
