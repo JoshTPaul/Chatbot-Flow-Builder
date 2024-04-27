@@ -8,18 +8,13 @@ const PANEL_ITEMS = [
     label: "Message",
     nodeType: "message",
   },
-  {
-    img: <MessageIcon />,
-    label: "Message",
-    nodeType: "message",
-  },
 ];
 
 function NodesPanel() {
   return (
     <NodesPanelWrapper>
       {PANEL_ITEMS.map(({ img, label, nodeType }) => (
-        <NodeCreator nodeType={nodeType}>
+        <NodeCreator nodeType={nodeType} key={`nodeCreator-${nodeType}`}>
           {img}
           {label}
         </NodeCreator>
