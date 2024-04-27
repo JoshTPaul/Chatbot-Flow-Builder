@@ -11,6 +11,7 @@ import ReactFlow, {
   useNodesState,
 } from "reactflow";
 import MessageNode from "../Nodes/Message";
+import { useFlowBuilder } from "../useFlowBuilder";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -23,6 +24,8 @@ function Canvas() {
     any,
     any
   > | null>(null);
+
+  const { onNodeClick } = useFlowBuilder();
 
   const nodeTypes = useMemo(() => ({ message: MessageNode }), []);
 
@@ -100,7 +103,7 @@ function Canvas() {
             onDrop={onDrop}
             onDragOver={onDragOver}
             fitView
-            onNodeClick={(event) => console.log("click", event)}
+            onNodeClick={onNodeClick}
             nodeTypes={nodeTypes}
           >
             <Controls />
