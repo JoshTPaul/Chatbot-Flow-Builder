@@ -1,22 +1,20 @@
 import { Node, NodeMouseHandler } from "reactflow";
 
-type CustomNodes = "message";
-
-type SidebarState = {
-  display: "NODES_PANEL" | "SETTINGS_PANEL";
-};
-
+export type CustomNodeTypes = "message";
 export type ProviderProps = {
   children: React.ReactNode;
 };
 
 export type FlowBuilderContextState = {
-  sidebar: SidebarState;
+  sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL";
   selectedNode: Node | null;
 };
 
 export type FlowBuilderContextValue = FlowBuilderContextState & {
   onNodeClick: NodeMouseHandler;
+  changeSidebarDisplay: (
+    sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL"
+  ) => void;
 };
 
 type ActionType<T> = {
@@ -24,7 +22,7 @@ type ActionType<T> = {
 };
 
 type ChangeSidebarDisplayAction = ActionType<"CHANGE_SIDEBAR_DISPLAY"> & {
-  payload: SidebarState["display"];
+  payload: FlowBuilderContextState["sidebarDisplay"];
 };
 
 type SetSelectedNodeAction = ActionType<"SET_SELECTED_NODE"> & {

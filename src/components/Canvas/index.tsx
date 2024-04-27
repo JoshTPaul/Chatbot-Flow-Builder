@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import ReactFlow, {
   Connection,
   Controls,
@@ -10,7 +10,7 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import MessageNode from "../Nodes/Message";
+import { CUSTOM_NODE_TYPES } from "../../constants";
 import { useFlowBuilder } from "../useFlowBuilder";
 
 let id = 0;
@@ -26,8 +26,6 @@ function Canvas() {
   > | null>(null);
 
   const { onNodeClick } = useFlowBuilder();
-
-  const nodeTypes = useMemo(() => ({ message: MessageNode }), []);
 
   const onConnect = useCallback(
     (params: Edge | Connection) =>
@@ -104,7 +102,7 @@ function Canvas() {
             onDragOver={onDragOver}
             fitView
             onNodeClick={onNodeClick}
-            nodeTypes={nodeTypes}
+            nodeTypes={CUSTOM_NODE_TYPES}
           >
             <Controls />
           </ReactFlow>
