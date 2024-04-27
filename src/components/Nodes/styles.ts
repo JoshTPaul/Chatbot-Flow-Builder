@@ -5,6 +5,7 @@ export const MessageNodeWrapper = styled.div`
   width: 400px;
   border-radius: 0.5rem;
   overflow: hidden;
+  cursor: pointer;
 
   .content {
     & > .header {
