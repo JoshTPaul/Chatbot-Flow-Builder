@@ -1,4 +1,4 @@
-import { changeSidebarDisplay } from "../../../useFlowBuilderZustand";
+import { changeSidebarDisplay } from "../../../useFlowBuilder";
 import { SettingsPanelWrapper } from "./styles";
 
 function Item() {

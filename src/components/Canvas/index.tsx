@@ -11,7 +11,7 @@ import ReactFlow, {
   useNodesState,
 } from "reactflow";
 import { CUSTOM_NODE_TYPES } from "../../constants";
-import { onNodeClick } from "../../useFlowBuilderZustand";
+import { onNodeClick } from "../../useFlowBuilder";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;

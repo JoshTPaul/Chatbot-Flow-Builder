@@ -1,4 +1,4 @@
-import { useFlowBuilder } from "../../useFlowBuilderZustand";
+import { useFlowBuilder } from "../../useFlowBuilder";
 import NodesPanel from "./NodesPanel";
 import SettingsPanel from "./SettingsPanel";
 
