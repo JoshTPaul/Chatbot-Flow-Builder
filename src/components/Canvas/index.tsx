@@ -11,7 +11,7 @@ import ReactFlow, {
   useNodesState,
 } from "reactflow";
 import { CUSTOM_NODE_TYPES } from "../../constants";
-import { onNodeClick } from "../../useFlowBuilder";
+import { useFlowBuilder } from "../../useFlowBuilder";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -24,6 +24,8 @@ function Canvas() {
     any,
     any
   > | null>(null);
+
+  const { onNodeClick } = useFlowBuilder();
 
   const onConnect = useCallback(
     (params: Edge | Connection) =>

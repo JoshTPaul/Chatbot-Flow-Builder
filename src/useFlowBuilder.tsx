@@ -13,22 +13,26 @@ type Action = {
   ) => void;
 };
 
-export const useFlowBuilder = create<State>(() => ({
-  selectedNode: null,
-  sidebarDisplay: "NODES_PANEL",
-}));
-
-export const onNodeClick: Action["onNodeClick"] = (_, node) =>
-  useFlowBuilder.setState((state) => {
+export const useFlowBuilder = create<State & Action>((set) => {
+  const onNodeClick: Action["onNodeClick"] = (_, node) => {
     switch (node.type) {
       case "message":
-        return { selectedNode: node, sidebarDisplay: "SETTINGS_PANEL" };
+        set({ selectedNode: node, sidebarDisplay: "SETTINGS_PANEL" });
+        break;
       default:
         // Do nothing, for now
-        return state;
+        return;
     }
-  });
+  };
 
-export const changeSidebarDisplay: Action["changeSidebarDisplay"] = (
-  sidebarDisplay
-) => useFlowBuilder.setState({ sidebarDisplay });
+  const changeSidebarDisplay: Action["changeSidebarDisplay"] = (
+    sidebarDisplay
+  ) => set({ sidebarDisplay });
+
+  return {
+    selectedNode: null,
+    sidebarDisplay: "NODES_PANEL",
+    onNodeClick,
+    changeSidebarDisplay,
+  };
+});

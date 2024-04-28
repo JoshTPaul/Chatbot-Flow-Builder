@@ -1,4 +1,4 @@
-import { changeSidebarDisplay } from "../../../useFlowBuilder";
+import { useFlowBuilder } from "../../../useFlowBuilder";
 import { SettingsPanelWrapper } from "./styles";
 
 function Item() {
@@ -11,6 +11,7 @@ function Item() {
 }
 
 function SettingsPanel() {
+  const { changeSidebarDisplay } = useFlowBuilder();
   const onBackClick = () => {
     changeSidebarDisplay("NODES_PANEL");
   };
