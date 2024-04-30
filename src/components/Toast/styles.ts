@@ -25,7 +25,7 @@ export const ToastWrapper = styled.div<Props>(
   padding: 1rem;
   border-radius: 10px;
   animation: float ${animDuration / 2}ms, float ${animDuration / 2}ms
-    ${animDuration / 2}ms reverse;
+    ${animDuration / 2}ms reverse forwards;
 
     ${variantStyles[variant]}
 
