@@ -94,7 +94,7 @@ body,
 }
 
 header {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   display: grid;
   grid-template-columns: auto 400px;
   place-items: center;

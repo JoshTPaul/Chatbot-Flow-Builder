@@ -1,5 +1,7 @@
 import { ChangeEventHandler } from "react";
-import { useFlowBuilder } from "../../../useFlowBuilder";
+import ArrowIcon from "../../../assets/ArrowIcon";
+import { useFlowBuilder } from "../../../hooks/useFlowBuilder";
+import { getCustomNodeLabel } from "../../../utils";
 import { SettingsPanelWrapper } from "./styles";
 
 function Item() {
@@ -47,11 +49,15 @@ function SettingsPanel() {
     changeSidebarDisplay("NODES_PANEL");
   };
 
+  const title = getCustomNodeLabel(selectedNode?.type);
+
   return (
     <SettingsPanelWrapper>
       <div className="header">
-        <span onClick={onBackClick}>&#8592;</span>
-        {selectedNode?.type}
+        <span onClick={onBackClick}>
+          <ArrowIcon className="backArrow" />
+        </span>
+        {title}
       </div>
       <Item />
     </SettingsPanelWrapper>

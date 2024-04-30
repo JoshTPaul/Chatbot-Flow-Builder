@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFlowBuilder } from "../../useFlowBuilder";
+import { useFlowBuilder } from "../../hooks/useFlowBuilder";
 import { ToastWrapper } from "./styles";
 
 function Toast() {

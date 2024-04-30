@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Toast } from "../types";
+import { Toast } from "../../types";
 
 type Props = {
   variant: Toast["type"];

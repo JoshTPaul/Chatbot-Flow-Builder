@@ -1,6 +1,6 @@
 import { Edge, Node, NodeMouseHandler } from "reactflow";
 import { create } from "zustand";
-import { Toast } from "./components/types";
+import { Toast } from "../types";
 
 type State = {
   nodes: Node[];

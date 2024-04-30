@@ -1,16 +1,16 @@
-import { Handle, Position } from "reactflow";
+import { Handle, Node, Position } from "reactflow";
 import MessageIcon from "../../assets/MessageIcon";
 import WhatsappIcon from "../../assets/WhatsappIcon";
-import { MessageNodeData } from "../types";
+import { MessageNodeData } from "../../types";
 import { MessageNodeWrapper } from "./styles";
 
-type Props = {
+type Props = Node & {
   data: MessageNodeData;
 };
 
-function MessageNode({ data }: Props) {
+function MessageNode({ data, selected }: Props) {
   return (
-    <MessageNodeWrapper>
+    <MessageNodeWrapper selected={!!selected}>
       <Handle
         type="target"
         position={Position.Left}

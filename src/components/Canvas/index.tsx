@@ -10,8 +10,8 @@ import ReactFlow, {
   applyNodeChanges,
 } from "reactflow";
 import { CUSTOM_NODE_TYPES } from "../../constants";
-import { useFlowBuilder } from "../../useFlowBuilder";
-import { getCustomNodeLabel } from "../utils";
+import { useFlowBuilder } from "../../hooks/useFlowBuilder";
+import { getCustomNodeLabel } from "../../utils";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;

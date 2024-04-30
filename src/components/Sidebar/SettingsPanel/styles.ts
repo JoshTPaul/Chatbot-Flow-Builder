@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SettingsPanelWrapper = styled.div`
   .header {
     display: grid;
-    grid-template-columns: min-content auto min-content;
+    grid-template-columns: 1rem auto 1rem;
     gap: 1rem;
     place-items: center;
     padding: 0.5rem 1rem;
@@ -20,5 +20,10 @@ export const SettingsPanelWrapper = styled.div`
     textarea {
       resize: vertical;
     }
+  }
+
+  svg.backArrow {
+    cursor: pointer;
+    font-size: 0.75rem;
   }
 `;

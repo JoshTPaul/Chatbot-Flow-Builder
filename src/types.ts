@@ -5,13 +5,13 @@ export type Toast = {
   message: string;
   duration?: number;
 };
-type CustomNodeData = {
-  label: string;
-};
 
-export type MessageNodeData = CustomNodeData & {
+export type MessageNodeData = {
   text: {
     label: string;
     value: string;
   };
 };
+
+// Add new node data types here to extend the flow builder
+export type CustomNodeData = MessageNodeData;

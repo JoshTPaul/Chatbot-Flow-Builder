@@ -1,4 +1,4 @@
-import { useFlowBuilder } from "../../useFlowBuilder";
+import { useFlowBuilder } from "../../hooks/useFlowBuilder";
 import NodesPanel from "./NodesPanel";
 import SettingsPanel from "./SettingsPanel";
 
