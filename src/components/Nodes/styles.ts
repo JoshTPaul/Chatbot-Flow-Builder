@@ -18,6 +18,7 @@ export const MessageNodeWrapper = styled.div`
 
     & > p {
       padding: 0.75rem 0.5rem;
+      min-height: 3rem;
     }
   }
 `;
