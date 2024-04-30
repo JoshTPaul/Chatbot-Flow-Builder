@@ -21,4 +21,12 @@ export const MessageNodeWrapper = styled.div`
       min-height: 3rem;
     }
   }
+
+  .whatsappIcon {
+    margin-left: auto;
+    padding: 0.25rem;
+    font-size: 1.25rem;
+    background-color: var(--neutral800);
+    border-radius: 100%;
+  }
 `;

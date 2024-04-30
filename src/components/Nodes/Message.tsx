@@ -1,5 +1,6 @@
 import { Handle, Position } from "reactflow";
 import MessageIcon from "../../assets/MessageIcon";
+import WhatsappIcon from "../../assets/WhatsappIcon";
 import { MessageNodeWrapper } from "./styles";
 
 function MessageNode({ data }) {
@@ -14,7 +15,9 @@ function MessageNode({ data }) {
         <div className="header">
           <MessageIcon />
           <h3>Send Message</h3>
-          (whatsapp icon)
+          <div className="whatsappIcon">
+            <WhatsappIcon />
+          </div>
         </div>
         <p>{data?.text?.value}</p>
       </section>
