@@ -5,13 +5,12 @@ import { getCustomNodeLabel } from "../../../utils";
 import { SettingsPanelWrapper } from "./styles";
 
 function Item() {
-  const { nodes, updateNodes, getSelectedNode, selectedNodeId } =
-    useFlowBuilder();
+  const { nodes, updateNodes, getSelectedNode } = useFlowBuilder();
   const selectedNode = getSelectedNode();
 
   const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     const newNodes = nodes.map((node) => {
-      if (selectedNodeId === node.id) {
+      if (node.selected) {
         return {
           ...node,
           data: {

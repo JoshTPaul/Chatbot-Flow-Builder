@@ -23,15 +23,8 @@ function Canvas() {
     any
   > | null>(null);
 
-  const {
-    nodes,
-    addNodes,
-    updateNodes,
-    edges,
-    addEdges,
-    updateEdges,
-    onNodeClick,
-  } = useFlowBuilder();
+  const { nodes, addNodes, updateNodes, edges, addEdges, updateEdges } =
+    useFlowBuilder();
 
   const onConnect = useCallback(
     (params: Edge | Connection) =>
@@ -117,7 +110,6 @@ function Canvas() {
             onDrop={onDrop}
             onDragOver={onDragOver}
             fitView
-            onNodeClick={onNodeClick}
             nodeTypes={CUSTOM_NODE_TYPES}
           />
         </div>

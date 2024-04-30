@@ -1,11 +1,10 @@
-import { Edge, Node, NodeMouseHandler } from "reactflow";
+import { Edge, Node } from "reactflow";
 import { create } from "zustand";
 import { Toast } from "../types";
 
 type State = {
   nodes: Node[];
   edges: Edge[];
-  selectedNodeId: string | null;
   sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL";
   toast: Toast | null;
 };
@@ -16,7 +15,6 @@ type Action = {
   updateNodes: (nodes: Node[]) => void;
   addEdges: (edges: Edge[]) => void;
   updateEdges: (edges: Edge[]) => void;
-  onNodeClick: NodeMouseHandler;
   changeSidebarDisplay: (
     sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL"
   ) => void;
@@ -24,17 +22,6 @@ type Action = {
 };
 
 export const useFlowBuilder = create<State & Action>((set) => {
-  const onNodeClick: Action["onNodeClick"] = (_, node) => {
-    switch (node.type) {
-      case "message":
-        set({ selectedNodeId: node.id, sidebarDisplay: "SETTINGS_PANEL" });
-        break;
-      default:
-        // Do nothing, for now
-        return;
-    }
-  };
-
   const changeSidebarDisplay: Action["changeSidebarDisplay"] = (
     sidebarDisplay
   ) => set({ sidebarDisplay });
@@ -43,7 +30,11 @@ export const useFlowBuilder = create<State & Action>((set) => {
     set((state) => ({ nodes: [...state.nodes, ...nodes] }));
   };
 
-  const updateNodes: Action["updateNodes"] = (nodes) => set({ nodes });
+  const updateNodes: Action["updateNodes"] = (nodes) => {
+    const isNodeSelected = nodes.find((node) => node.selected);
+    const sidebarDisplay = isNodeSelected ? "SETTINGS_PANEL" : "NODES_PANEL";
+    set({ nodes, sidebarDisplay });
+  };
 
   const addEdges: Action["addEdges"] = (edges) => {
     set((state) => ({ edges: [...state.edges, ...edges] }));
@@ -53,7 +44,7 @@ export const useFlowBuilder = create<State & Action>((set) => {
 
   const getSelectedNode: Action["getSelectedNode"] = () => {
     const state = useFlowBuilder.getState();
-    return state.nodes.find((node) => node.id === state.selectedNodeId) || null;
+    return state.nodes.find((node) => node.selected) || null;
   };
 
   const createToast: Action["createToast"] = (toast) => set({ toast });
@@ -61,13 +52,11 @@ export const useFlowBuilder = create<State & Action>((set) => {
   const state: State = {
     nodes: [],
     edges: [],
-    selectedNodeId: null,
     sidebarDisplay: "NODES_PANEL",
     toast: null,
   };
 
   const actions: Action = {
-    onNodeClick,
     changeSidebarDisplay,
     addNodes,
     updateNodes,
