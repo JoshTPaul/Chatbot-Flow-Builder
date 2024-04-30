@@ -6,18 +6,19 @@ export const MessageNodeWrapper = styled.div`
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;
+  --hPad: 1rem;
 
   .content {
     & > .header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem;
+      padding: 0.5rem var(--hPad);
       background: linear-gradient(#aeeee0, #b1efe7);
     }
 
     & > p {
-      padding: 0.75rem 0.5rem;
+      padding: 0.75rem var(--hPad);
       min-height: 3rem;
     }
   }
