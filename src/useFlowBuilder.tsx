@@ -27,7 +27,6 @@ export const useFlowBuilder = create<State & Action>((set) => {
   const onNodeClick: Action["onNodeClick"] = (_, node) => {
     switch (node.type) {
       case "message":
-        console.log("setting message node", node.id);
         set({ selectedNodeId: node.id, sidebarDisplay: "SETTINGS_PANEL" });
         break;
       default:
