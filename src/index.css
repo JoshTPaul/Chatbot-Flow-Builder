@@ -69,7 +69,7 @@ h6 {
 /* GLOBAL STYLES */
 
 body {
-  --primary: #5f6880;
+  --primary: #527ced;
   --neutral0: #000;
   --neutral700: #dcdcdc;
   --neutral800: #f3f3f3;
@@ -107,11 +107,17 @@ button {
   background-color: var(--neutral900);
   border: 2px solid currentColor;
   padding: 0.75rem;
-  width: 150px;
+  width: 180px;
   border-radius: 0.25rem;
   box-shadow: none;
   font-weight: 600;
   grid-column: 2/3;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--neutral800);
+  }
 }
 
 main {
