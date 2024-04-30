@@ -12,6 +12,7 @@ border-radius: 0.5rem;
 overflow: hidden;
 cursor: pointer;
 --hPad: 1rem;
+background-color: var(--neutral900);
 
 ${selected ? `outline: 2px solid var(--primary);` : ""}
 
