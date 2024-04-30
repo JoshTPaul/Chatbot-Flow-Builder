@@ -1,7 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import ReactFlow, {
   Connection,
-  Controls,
   Edge,
   MarkerType,
   ReactFlowInstance,
@@ -119,9 +118,7 @@ function Canvas() {
             fitView
             onNodeClick={onNodeClick}
             nodeTypes={CUSTOM_NODE_TYPES}
-          >
-            <Controls />
-          </ReactFlow>
+          />
         </div>
       </ReactFlowProvider>
     </>
