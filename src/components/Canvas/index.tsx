@@ -7,8 +7,8 @@ import ReactFlow, {
   ReactFlowInstance,
   ReactFlowProvider,
   addEdge,
-  useEdgesState,
-  useNodesState,
+  applyEdgeChanges,
+  applyNodeChanges,
 } from "reactflow";
 import { CUSTOM_NODE_TYPES } from "../../constants";
 import { useFlowBuilder } from "../../useFlowBuilder";
@@ -18,18 +18,25 @@ const getId = () => `dndnode_${id++}`;
 
 function Canvas() {
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  // const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any
   > | null>(null);
 
-  const { onNodeClick } = useFlowBuilder();
+  const {
+    nodes,
+    addNodes,
+    updateNodes,
+    edges,
+    addEdges,
+    updateEdges,
+    onNodeClick,
+  } = useFlowBuilder();
 
   const onConnect = useCallback(
     (params: Edge | Connection) =>
-      setEdges((eds) =>
+      addEdges(
         addEdge(
           {
             ...params,
@@ -37,7 +44,7 @@ function Canvas() {
               type: MarkerType.ArrowClosed,
             },
           },
-          eds
+          edges
         )
       ),
     []
@@ -79,10 +86,15 @@ function Canvas() {
         id: getId(),
         type,
         position,
-        data: { label: `${type} node` },
+        data: {
+          text: {
+            label: "Text",
+            value: "Text Content",
+          },
+        },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      addNodes([newNode]);
     },
     [reactFlowInstance]
   );
@@ -94,9 +106,13 @@ function Canvas() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
+            onNodesChange={(changes) =>
+              updateNodes(applyNodeChanges(changes, nodes))
+            }
+            onEdgesChange={(changes) =>
+              updateEdges(applyEdgeChanges(changes, edges))
+            }
+            onConnect={(connections) => onConnect(connections)}
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
