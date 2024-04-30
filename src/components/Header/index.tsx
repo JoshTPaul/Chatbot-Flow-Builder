@@ -2,7 +2,7 @@ import { getOutgoers } from "reactflow";
 import { useFlowBuilder } from "../../useFlowBuilder";
 
 function Header() {
-  const { nodes, edges } = useFlowBuilder();
+  const { nodes, edges, createToast } = useFlowBuilder();
 
   const onSaveChanges = () => {
     // if this reaches 2, then it's a problem
@@ -11,12 +11,18 @@ function Header() {
       const outgoers = getOutgoers(nodes[i], nodes, edges);
       outgoers.length === 0 && unusedTargetHandleCount++;
       if (unusedTargetHandleCount === 2) {
-        alert("Cant save");
+        createToast({
+          type: "ERROR",
+          message: "Cannot save flow",
+        });
         return;
       }
     }
 
-    alert("Changes saved");
+    createToast({
+      type: "SUCCESS",
+      message: "Flow saved successfully",
+    });
   };
 
   return (

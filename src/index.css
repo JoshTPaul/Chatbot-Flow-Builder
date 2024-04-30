@@ -75,6 +75,9 @@ body {
   --neutral800: #f3f3f3;
   --neutral900: #fff;
 
+  --success: #b2eab2;
+  --danger: #fbcbca;
+
   margin: 0;
   color: var(--neutral0);
   font-family: sans-serif;

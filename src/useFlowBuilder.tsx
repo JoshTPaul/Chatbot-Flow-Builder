@@ -1,11 +1,13 @@
 import { Edge, Node, NodeMouseHandler } from "reactflow";
 import { create } from "zustand";
+import { Toast } from "./components/types";
 
 type State = {
   nodes: Node[];
   edges: Edge[];
   selectedNodeId: string | null;
   sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL";
+  toast: Toast | null;
 };
 
 type Action = {
@@ -18,6 +20,7 @@ type Action = {
   changeSidebarDisplay: (
     sidebarDisplay: "NODES_PANEL" | "SETTINGS_PANEL"
   ) => void;
+  createToast: (toast: Toast) => void;
 };
 
 export const useFlowBuilder = create<State & Action>((set) => {
@@ -54,11 +57,14 @@ export const useFlowBuilder = create<State & Action>((set) => {
     return state.nodes.find((node) => node.id === state.selectedNodeId) || null;
   };
 
+  const createToast: Action["createToast"] = (toast) => set({ toast });
+
   const state: State = {
     nodes: [],
     edges: [],
     selectedNodeId: null,
     sidebarDisplay: "NODES_PANEL",
+    toast: null,
   };
 
   const actions: Action = {
@@ -69,6 +75,7 @@ export const useFlowBuilder = create<State & Action>((set) => {
     addEdges,
     updateEdges,
     getSelectedNode,
+    createToast,
   };
 
   return {
