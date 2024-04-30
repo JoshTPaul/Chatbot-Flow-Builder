@@ -5,3 +5,13 @@ export type Toast = {
   message: string;
   duration?: number;
 };
+type CustomNodeData = {
+  label: string;
+};
+
+export type MessageNodeData = CustomNodeData & {
+  text: {
+    label: string;
+    value: string;
+  };
+};

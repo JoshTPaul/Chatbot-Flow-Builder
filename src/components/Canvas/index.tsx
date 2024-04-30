@@ -11,13 +11,13 @@ import ReactFlow, {
 } from "reactflow";
 import { CUSTOM_NODE_TYPES } from "../../constants";
 import { useFlowBuilder } from "../../useFlowBuilder";
+import { getCustomNodeLabel } from "../utils";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 function Canvas() {
   const reactFlowWrapper = useRef(null);
-  // const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any
@@ -86,6 +86,7 @@ function Canvas() {
         type,
         position,
         data: {
+          label: getCustomNodeLabel(type),
           text: {
             label: "Text",
             value: "Text Content",
