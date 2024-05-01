@@ -24,6 +24,13 @@ type Action = {
 /*
   INFO: A custom hook for managing the flow builder's state and actions.
   This hook can be easily extended to add more state and actions as needed.
+
+  I chose Zustand to handle state management because:
+  - I've never really tried using it before
+  - React Flow is already using Zustand for state management
+  - It's quite simple to use over Redux
+  - I would have used React's Context API, but it was causing way too many 
+    re-renders for this use case
 */
 export const useFlowBuilder = create<State & Action>((set) => {
   const changeSidebarDisplay: Action["changeSidebarDisplay"] = (
