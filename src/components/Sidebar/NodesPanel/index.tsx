@@ -1,15 +1,12 @@
-import MessageIcon from "../../../assets/MessageIcon";
+import { PANEL_ITEMS } from "../../../constants";
 import NodeCreator from "./NodeCreator";
 import { NodesPanelWrapper } from "./styles";
 
-const PANEL_ITEMS = [
-  {
-    img: <MessageIcon />,
-    label: "Message",
-    nodeType: "message",
-  },
-];
-
+/*
+  INFO: This component is responsible for mapping through
+  the PANEL_ITEMS array and displaying the various nodes
+  using the NodeCreator component.
+*/
 function NodesPanel() {
   return (
     <NodesPanelWrapper>

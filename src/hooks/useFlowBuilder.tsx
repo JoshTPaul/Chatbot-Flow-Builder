@@ -21,6 +21,10 @@ type Action = {
   createToast: (toast: Toast) => void;
 };
 
+/*
+  INFO: A custom hook for managing the flow builder's state and actions.
+  This hook can be easily extended to add more state and actions as needed.
+*/
 export const useFlowBuilder = create<State & Action>((set) => {
   const changeSidebarDisplay: Action["changeSidebarDisplay"] = (
     sidebarDisplay
@@ -30,6 +34,11 @@ export const useFlowBuilder = create<State & Action>((set) => {
     set((state) => ({ nodes: [...state.nodes, ...nodes] }));
   };
 
+  /*
+    INFO: Since apps like Figma also open their "node" settings
+    on click and on drag, I'm setting the sidebar display to "SETTINGS_PANEL"
+    when a node is selected here, since this function will fire on both click and drag
+  */
   const updateNodes: Action["updateNodes"] = (nodes) => {
     const isNodeSelected = nodes.find((node) => node.selected);
     const sidebarDisplay = isNodeSelected ? "SETTINGS_PANEL" : "NODES_PANEL";

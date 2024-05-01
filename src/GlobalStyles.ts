@@ -1,5 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
+/*
+  INFO: I've been using styled-components for a while now, and it's been great.
+  Since it's a CSS-in-JS solution, it is much easier to handle styling based on JS.
+*/
+
 const GlobalStyles = createGlobalStyle`
 /* 
   CSS RESET

@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useFlowBuilder } from "../../hooks/useFlowBuilder";
 import { ToastWrapper } from "./styles";
 
+/*
+  INFO: A generalized toast component.
+  Can be customized further to show different types of toast messages,
+  based on the type prop.
+*/
+
 function Toast() {
   const { toast } = useFlowBuilder();
   const [showToast, setShowToast] = useState<boolean>(false);

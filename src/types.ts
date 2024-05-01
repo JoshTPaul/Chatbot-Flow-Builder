@@ -15,3 +15,9 @@ export type MessageNodeData = {
 
 // Add new node data types here to extend the flow builder
 export type CustomNodeData = MessageNodeData;
+
+export type NodesPanelItem = {
+  img: JSX.Element;
+  label: string;
+  nodeType: CustomNodeTypes;
+};

@@ -1,44 +1,14 @@
-import { ChangeEventHandler } from "react";
 import ArrowIcon from "../../../assets/ArrowIcon";
 import { useFlowBuilder } from "../../../hooks/useFlowBuilder";
 import { getCustomNodeLabel } from "../../../utils";
 import { SettingsPanelWrapper } from "./styles";
+import TextSetting from "./TextSetting";
 
-function Item() {
-  const { nodes, updateNodes, getSelectedNode } = useFlowBuilder();
-  const selectedNode = getSelectedNode();
-
-  const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const newNodes = nodes.map((node) => {
-      if (node.selected) {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            text: {
-              value: e.target.value,
-            },
-          },
-        };
-      } else return node;
-    });
-
-    updateNodes(newNodes);
-  };
-
-  return (
-    <section>
-      Text
-      <textarea
-        placeholder="Text"
-        rows={2}
-        value={selectedNode?.data?.text?.value}
-        onChange={onChange}
-      />
-    </section>
-  );
-}
-
+/*
+  INFO: This component is responsible for displaying
+  the type of node selected, and its corresponding settings,
+  which are defined in the node's data object.
+*/
 function SettingsPanel() {
   const { changeSidebarDisplay, getSelectedNode } = useFlowBuilder();
 
@@ -50,6 +20,18 @@ function SettingsPanel() {
 
   const title = getCustomNodeLabel(selectedNode?.type);
 
+  const settings = Object.keys(selectedNode?.data);
+
+  /*
+    INFO:  The settingsMap is an object which maps the settings type to 
+    their corresponding component.
+
+    Add more settings as needed.
+  */
+  const settingsMap: Record<string, JSX.Element> = {
+    text: <TextSetting />,
+  };
+
   return (
     <SettingsPanelWrapper>
       <div className="header">
@@ -58,7 +40,7 @@ function SettingsPanel() {
         </span>
         {title}
       </div>
-      <Item />
+      {settings.map((key) => settingsMap[key])}
     </SettingsPanelWrapper>
   );
 }

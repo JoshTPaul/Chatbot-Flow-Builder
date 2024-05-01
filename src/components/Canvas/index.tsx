@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { DragEvent, useCallback, useRef, useState } from "react";
 import ReactFlow, {
   Connection,
   Edge,
@@ -54,12 +54,7 @@ function Canvas() {
   );
 
   const onDrop = useCallback(
-    (event: {
-      preventDefault: () => void;
-      dataTransfer: { getData: (arg0: string) => any };
-      clientX: any;
-      clientY: any;
-    }) => {
+    (event: DragEvent<HTMLDivElement>) => {
       event.preventDefault();
 
       const type = event.dataTransfer.getData("application/reactflow");
@@ -105,7 +100,7 @@ function Canvas() {
             onEdgesChange={(changes) =>
               updateEdges(applyEdgeChanges(changes, edges))
             }
-            onConnect={(connections) => onConnect(connections)}
+            onConnect={onConnect}
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}

@@ -5,7 +5,8 @@ function Header() {
   const { nodes, edges, createToast } = useFlowBuilder();
 
   const onSaveChanges = () => {
-    // if this reaches 2, then it's a problem
+    // For a happy flow, there can only be 0 or 1 unused target handles
+    // If there are 2 or more unused target handles, then the flow cannot be saved.
     let unusedTargetHandleCount = 0;
     for (let i = 0; i < nodes.length; i++) {
       const outgoers = getOutgoers(nodes[i], nodes, edges);

@@ -1,10 +1,10 @@
-import { Handle, Node, Position } from "reactflow";
+import { Handle, NodeProps, Position } from "reactflow";
 import MessageIcon from "../../assets/MessageIcon";
 import WhatsappIcon from "../../assets/WhatsappIcon";
 import { MessageNodeData } from "../../types";
 import { MessageNodeWrapper } from "./styles";
 
-type Props = Node & {
+type Props = NodeProps & {
   data: MessageNodeData;
 };
 
