@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
 /* 
   CSS RESET
   From https://www.joshwcomeau.com/css/custom-css-reset/ 
@@ -66,6 +69,8 @@ h6 {
   isolation: isolate;
 }
 
+
+
 /* GLOBAL STYLES */
 
 body {
@@ -129,3 +134,16 @@ main {
 aside {
   border: 1px solid var(--neutral700);
 }
+
+/* 
+    React Flow overrides
+*/
+
+.react-flow__handle {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+`;
+
+export default GlobalStyles;
